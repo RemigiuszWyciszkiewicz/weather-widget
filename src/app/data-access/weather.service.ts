@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { WeatherPageComponent } from '../weather-page/weather-page.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { Weather, CityWeather } from './city-weather';
 import { WeatherPageModule } from '../weather-page/weather-page.module';
-
+import { CityId } from './city-id';
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class WeatherService {
-  apiUrl = 'api.openweathermap.org/data/2.5/weather?id=3081368&appid=6f1a243886425bbb2d620ed0891ba61e';
-
   constructor(private readonly _httpClient: HttpClient) {}
 
-  getWeather(): Observable<CityWeather> {
-    return this._httpClient.get<CityWeather>(this.apiUrl);
+  getWeather(cityId: CityId): Observable<CityWeather> {
+    return this._httpClient.get<CityWeather>(`${environment.weather_api_url}`, {
+      params: { id: cityId, appid: environment.weather_api_key },
+    });
   }
 }
