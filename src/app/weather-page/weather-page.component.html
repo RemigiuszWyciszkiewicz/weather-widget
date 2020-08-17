@@ -1,1 +1,74 @@
-Weather page
+<div class="h-100 d-flex justify-content-center align-items-center">
+  <div class="widget">
+    <ng-container *ngIf="!serverError; else serverErrorStatement">
+      <ng-container *ngIf="weather$ | async as weather; else loading">
+        <div class="widget-background h-100" [ngStyle]="{ 'background-image': 'url(' + timeOfDayImage + ')' }">
+          <div class="widget-header d-flex justify-content-between">
+            <div class="weather-condition d-flex">
+              <div class="weather-condition-icon">
+                <img [src]="'http://openweathermap.org/img/wn/10d@2x.png'" alt="weather_icon" />
+              </div>
+              <div class="d-flex flex-column justify-content-around">
+                <div class="weather-condition-city mt-3">{{ weather.name }}</div>
+                <div class="weather-condition-description mb-3">
+                  <ng-container *ngIf="weather.weather && weather.weather.length">
+                    {{ weather.weather[0].description | titlecase }}
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+
+            <img
+              (click)="fetchCityWeather()"
+              class="icon icon-animation"
+              src="https://htmlacademy.ru/assets/icons/reload-6x-white.png"
+              alt="refresh_icon"
+            />
+          </div>
+          <div class="p-3 blur">
+            <div class="widget-content">
+              <div class="weather-property-label">Temperatura</div>
+              <div class="weather-property-value">{{ weather.main.temp - 273.15 | number: '2.0-1' }}&#xb0;C</div>
+              <div class="weather-property-label">Odczuwalna temperatura</div>
+              <div class="weather-property-value">{{ weather.main.feels_like - 273.15 | number: '2.0-1' }}&#xb0;C</div>
+              <div class="weather-property-label">Maksymalna temperatura</div>
+              <div class="weather-property-value">{{ weather.main.temp_max - 273.15 | number: '2.0-1' }}&#xb0;C</div>
+              <div class="weather-property-label">Minimalna temperatura</div>
+              <div class="weather-property-value">{{ weather.main.temp_min - 273.15 | number: '2.0-1' }}&#xb0;C</div>
+              <div class="weather-property-label">Wilgotność</div>
+              <div class="weather-property-value">{{ weather.main.humidity }}%</div>
+              <div class="weather-property-label">Ciśnienie</div>
+              <div class="weather-property-value">{{ weather.main.pressure }} hPa</div>
+              <div class="weather-property-label">Poziom zachmurzenia</div>
+              <div class="weather-property-value">{{ weather.clouds.all }}%</div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="last-calculation">
+              Data ostatniej kalkulacji:&nbsp;&nbsp;
+            </div>
+            <div class="last-calculation">
+              {{ weather.dt | unixTimestampTime }}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="h-100 w-100 d-flex justify-content-center align-items-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #serverErrorStatement>
+  <div class="h-100 w-100 d-flex justify-content-center align-items-center">
+    <div class="text-center">
+      Wystąpił błąd podczas pobierania danych pogodowych.
+    </div>
+  </div>
+</ng-template>

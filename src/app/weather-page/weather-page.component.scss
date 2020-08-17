@@ -1,0 +1,82 @@
+.widget {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  height: 50%;
+  width: 23rem;
+  border-radius: 10%;
+
+  &-header {
+  }
+
+  &-background {
+    min-width: 100%;
+    min-height: 100%;
+    background-position: 0 60%;
+    border-radius: 1%;
+  }
+
+  &-content {
+    height: 16rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0.5rem;
+  }
+
+  .weather-condition-description {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 700;
+  }
+
+  .weather-condition-city {
+    font-size: 1rem;
+    color: white;
+  }
+}
+
+.spinner {
+  height: 100%;
+  width: 100%;
+}
+
+.refresh-button {
+  cursor: pointer;
+}
+
+.weather-property {
+  &-label {
+    justify-self: start;
+    color: white;
+    font-size: 0.8rem;
+  }
+  &-value {
+    justify-self: end;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}
+
+.last-calculation {
+  margin-top: 2.8rem;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.icon {
+  margin-right: 0.4rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+}
+
+.blur {
+  backdrop-filter: blur(6px);
+}
