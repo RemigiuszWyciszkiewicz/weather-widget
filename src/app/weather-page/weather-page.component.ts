@@ -4,7 +4,6 @@ import { CityId } from '../data-access/city-id';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { CityWeather } from '../data-access/city-weather';
-import { HttpErrorResponse } from '@angular/common/http';
 
 export enum TimeOfDayImage {
   MORNING = 'https://cdn.pixabay.com/photo/2017/04/20/08/45/beach-2245049_960_720.png',

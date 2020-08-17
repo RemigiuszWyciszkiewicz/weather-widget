@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { WeatherPageComponent } from '../weather-page/weather-page.component';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { of, Observable } from 'rxjs';
-import { Weather, CityWeather } from './city-weather';
-import { WeatherPageModule } from '../weather-page/weather-page.module';
+
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { CityWeather } from './city-weather';
+
 import { CityId } from './city-id';
 import { environment } from 'src/environments/environment';
 @Injectable()
